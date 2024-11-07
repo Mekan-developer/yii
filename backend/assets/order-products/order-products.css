@@ -1,0 +1,13 @@
+#order-products td.has_error input,
+#order-products td.has_error_max input {
+    border-color: red;
+}
+#order-products .product-info {
+    display: none;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+#order-products td.has_error_max .product-info {
+    display: block;
+}

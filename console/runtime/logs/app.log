@@ -1,0 +1,188 @@
+2024-11-07 09:28:37 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "db:seed". in C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\base\Module.php:561
+Stack trace:
+#0 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('db:seed', Array)
+#1 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('db:seed', Array)
+#2 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\base\Application.php(384): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\yii(21): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "db:seed". in C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('db:seed', Array)
+#1 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\base\Application.php(384): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\yii(21): yii\base\Application->run()
+#3 {main}
+2024-11-07 09:28:37 [-][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\m.agamyradov\\AppData\\Roaming'
+    'ChocolateyInstall' => 'C:\\ProgramData\\chocolatey'
+    'CHROME_CRASHPAD_PIPE_NAME' => '\\\\.\\pipe\\crashpad_4716_BNMQLDWAYVNPVRLS'
+    'CommonProgramFiles' => 'C:\\Program Files\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'DESKTOP-IT10'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FPS_BROWSER_APP_PROFILE_STRING' => 'Internet Explorer'
+    'FPS_BROWSER_USER_PROFILE_STRING' => 'Default'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\m.agamyradov'
+    'INTEL_DEV_REDIST' => 'C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\'
+    'JAVA_HOME' => 'C:\\Program Files\\Java\\jdk-18'
+    'LOCALAPPDATA' => 'C:\\Users\\m.agamyradov\\AppData\\Local'
+    'LOGONSERVER' => '\\\\AD'
+    'MIC_LD_LIBRARY_PATH' => 'C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\compiler\\lib\\mic'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'ORIGINAL_XDG_CURRENT_DESKTOP' => 'undefined'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Python312\\Scripts\\;C:\\Python312\\;C:\\Program Files (x86)\\VMware\\VMware Workstation\\bin\\;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Python311\\Scripts\\;C:\\Python311\\;C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\redist\\intel64\\compiler;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Python310\\Scripts\\;C:\\Python310\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\EmEditor;C:\\ProgramData\\chocolatey\\bin;C:\\flutter\\flutter\\bin;C:\\Users\\user\\AppData\\Local\\Pub\\Cache\\bin;C:\\Program Files\\Java\\jdk-18\\bin;C:\\Program Files\\dotnet\\;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Program Files\\Go\\bin;C:\\Program Files\\PuTTY\\;C:\\Program Files\\Git\\cmd;C:\\composer;C:\\Program Files\\nodejs\\;C:\\xampp\\php;C:\\Users\\m.agamyradov\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\m.agamyradov\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\m.agamyradov\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\m.agamyradov\\AppData\\Roaming\\npm'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL'
+    'PROCESSOR_ARCHITECTURE' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 94 Stepping 3, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '5e03'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Users\\m.agamyradov\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Temp'
+    'TMP' => 'C:\\Temp'
+    'USERDNSDOMAIN' => 'LOTTA.LOCAL'
+    'USERDOMAIN' => 'LOTTA'
+    'USERDOMAIN_ROAMINGPROFILE' => 'LOTTA'
+    'USERNAME' => 'm.agamyradov'
+    'USERPROFILE' => 'C:\\Users\\m.agamyradov'
+    'windir' => 'C:\\Windows'
+    'ZES_ENABLE_SYSMAN' => '1'
+    'TERM_PROGRAM' => 'vscode'
+    'TERM_PROGRAM_VERSION' => '1.95.1'
+    'LANG' => 'en_US.UTF-8'
+    'COLORTERM' => 'truecolor'
+    'GIT_ASKPASS' => 'c:\\Users\\m.agamyradov\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh'
+    'VSCODE_GIT_ASKPASS_NODE' => 'C:\\Users\\m.agamyradov\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe'
+    'VSCODE_GIT_ASKPASS_EXTRA_ARGS' => ''
+    'VSCODE_GIT_ASKPASS_MAIN' => 'c:\\Users\\m.agamyradov\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass-main.js'
+    'VSCODE_GIT_IPC_HANDLE' => '\\\\.\\pipe\\vscode-git-e8101bea74-sock'
+    'VSCODE_INJECTION' => '1'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1730960917.5712
+    'REQUEST_TIME' => 1730960917
+    'argv' => [
+        0 => 'yii'
+        1 => 'db:seed'
+    ]
+    'argc' => 2
+]
+2024-11-07 09:29:32 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "db-seeder". in C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\base\Module.php:561
+Stack trace:
+#0 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('db-seeder', Array)
+#1 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('db-seeder', Array)
+#2 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\base\Application.php(384): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\yii(21): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "db-seeder". in C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('db-seeder', Array)
+#1 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\vendor\yiisoft\yii2\base\Application.php(384): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 C:\Users\m.agamyradov\Desktop\test project\p-seed\p-seed\yii(21): yii\base\Application->run()
+#3 {main}
+2024-11-07 09:29:32 [-][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\m.agamyradov\\AppData\\Roaming'
+    'ChocolateyInstall' => 'C:\\ProgramData\\chocolatey'
+    'CHROME_CRASHPAD_PIPE_NAME' => '\\\\.\\pipe\\crashpad_4716_BNMQLDWAYVNPVRLS'
+    'CommonProgramFiles' => 'C:\\Program Files\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'DESKTOP-IT10'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'ESET_OPTIONS' => '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '
+    'FPS_BROWSER_APP_PROFILE_STRING' => 'Internet Explorer'
+    'FPS_BROWSER_USER_PROFILE_STRING' => 'Default'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\m.agamyradov'
+    'INTEL_DEV_REDIST' => 'C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\'
+    'JAVA_HOME' => 'C:\\Program Files\\Java\\jdk-18'
+    'LOCALAPPDATA' => 'C:\\Users\\m.agamyradov\\AppData\\Local'
+    'LOGONSERVER' => '\\\\AD'
+    'MIC_LD_LIBRARY_PATH' => 'C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\compiler\\lib\\mic'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'ORIGINAL_XDG_CURRENT_DESKTOP' => 'undefined'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Python312\\Scripts\\;C:\\Python312\\;C:\\Program Files (x86)\\VMware\\VMware Workstation\\bin\\;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Python311\\Scripts\\;C:\\Python311\\;C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\redist\\intel64\\compiler;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Python310\\Scripts\\;C:\\Python310\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\EmEditor;C:\\ProgramData\\chocolatey\\bin;C:\\flutter\\flutter\\bin;C:\\Users\\user\\AppData\\Local\\Pub\\Cache\\bin;C:\\Program Files\\Java\\jdk-18\\bin;C:\\Program Files\\dotnet\\;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Program Files\\Go\\bin;C:\\Program Files\\PuTTY\\;C:\\Program Files\\Git\\cmd;C:\\composer;C:\\Program Files\\nodejs\\;C:\\xampp\\php;C:\\Users\\m.agamyradov\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\m.agamyradov\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\m.agamyradov\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\m.agamyradov\\AppData\\Roaming\\npm'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL'
+    'PROCESSOR_ARCHITECTURE' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 94 Stepping 3, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '5e03'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Users\\m.agamyradov\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Temp'
+    'TMP' => 'C:\\Temp'
+    'USERDNSDOMAIN' => 'LOTTA.LOCAL'
+    'USERDOMAIN' => 'LOTTA'
+    'USERDOMAIN_ROAMINGPROFILE' => 'LOTTA'
+    'USERNAME' => 'm.agamyradov'
+    'USERPROFILE' => 'C:\\Users\\m.agamyradov'
+    'windir' => 'C:\\Windows'
+    'ZES_ENABLE_SYSMAN' => '1'
+    'TERM_PROGRAM' => 'vscode'
+    'TERM_PROGRAM_VERSION' => '1.95.1'
+    'LANG' => 'en_US.UTF-8'
+    'COLORTERM' => 'truecolor'
+    'GIT_ASKPASS' => 'c:\\Users\\m.agamyradov\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh'
+    'VSCODE_GIT_ASKPASS_NODE' => 'C:\\Users\\m.agamyradov\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe'
+    'VSCODE_GIT_ASKPASS_EXTRA_ARGS' => ''
+    'VSCODE_GIT_ASKPASS_MAIN' => 'c:\\Users\\m.agamyradov\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass-main.js'
+    'VSCODE_GIT_IPC_HANDLE' => '\\\\.\\pipe\\vscode-git-e8101bea74-sock'
+    'VSCODE_INJECTION' => '1'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1730960972.2556
+    'REQUEST_TIME' => 1730960972
+    'argv' => [
+        0 => 'yii'
+        1 => 'db-seeder'
+    ]
+    'argc' => 2
+]
