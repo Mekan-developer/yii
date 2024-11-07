@@ -1,53 +1,39 @@
 <?php
+die('test');
 use yii\helpers\Html;
+use yii\grid\GridView;
 
-/** @var array $reportData */
-/** @var array $totals */
-/** @var string $startDate */
-/** @var string $endDate */
-/** @var int $regionId */
-
+$this->title = 'Отчёт';
 ?>
 
-<h1>Client Product Report</h1>
+<h1><?= Html::encode($this->title) ?></h1>
 
-<!-- Render search form -->
-<?= $this->render('_search', [
-    'model' => $searchModel,
-]) ?>
+<?= $this->render('_search', ['model' => $searchModel]); ?>
 
-<!-- Display filter information if applied -->
-<div>
-    <p>Period: <?= Html::encode($startDate) ?> to <?= Html::encode($endDate) ?></p>
-    <p>Region: <?= Html::encode($regionId) ?></p>
-</div>
-
-<!-- Report Table -->
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Client</th>
+            <th>ФИО клиента</th>
             <?php for ($i = 1; $i <= 12; $i++): ?>
-                <th>Product <?= $i ?></th>
+                <th>Товар <?= $i ?></th>
             <?php endfor; ?>
+            <th>ИТОГО</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($reportData as $data): ?>
+        <?php foreach ($dataProvider->getModels() as $clientName => $products): ?>
             <tr>
-                <td><?= Html::encode($data['client']) ?></td>
-                <?php foreach ($data['products'] as $quantity): ?>
+                <td><?= Html::encode($clientName) ?></td>
+                <?php 
+                $total = 0;
+                for ($i = 1; $i <= 12; $i++): 
+                    $quantity = isset($products[$i]) ? $products[$i] : 0;
+                    $total += $quantity;
+                ?>
                     <td><?= Html::encode($quantity) ?></td>
-                <?php endforeach; ?>
+                <?php endfor; ?>
+                <td><?= Html::encode($total) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
-    <tfoot>
-        <tr>
-            <td><strong>Total</strong></td>
-            <?php foreach ($totals as $total): ?>
-                <td><strong><?= Html::encode($total) ?></strong></td>
-            <?php endforeach; ?>
-        </tr>
-    </tfoot>
 </table>

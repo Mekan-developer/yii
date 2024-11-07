@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\ReportSearch;
 use common\controllers\RefController;
 use common\models\BaseActiveRecord;
 use common\models\Client;
@@ -63,7 +64,22 @@ class SiteController extends RefController
     public function actionIndex()
     {
         return $this->redirect(['/orders']);
-//        return $this->render('index');
+            //    return $this->render('index');
+    }
+
+    public function actionReport()
+    {
+        // Instantiate the search model for the report
+        $searchModel = new ReportSearch();
+
+        // Fetch data based on search parameters (filters)
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        // Render the main index.php located directly in backend/views/
+        return $this->render('/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
