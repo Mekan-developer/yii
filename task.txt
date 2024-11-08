@@ -10,7 +10,7 @@ https://drive.google.com/drive/folders/1JnMNOgiA6mwEBiVGligTUlPyu26NgZI7?usp=sha
 Ваш код должен содержаться в следующих файлах:
 
 backend\controllers\ReportDevController.php
-backend\views\_search.php
+backend\views\search.php
 backend\views\index.php
 
 Расчётное рабочее время на это задание - 2 часа.

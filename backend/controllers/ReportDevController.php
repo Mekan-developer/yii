@@ -4,14 +4,26 @@ namespace backend\controllers;
 
 use backend\models\ReportSearch;
 use common\controllers\RefController;
-use common\models\Order;
+use common\models\OrderProduct;
+use common\models\Product;
 use Yii;
 use yii\filters\AccessControl;
-use backend\models\ReportUpload;
-use yii\data\ActiveDataProvider;
-use backend\models\Orders;
-use backend\models\OrdersProducts;
-use backend\models\Regions;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use yii\web\Response;
+
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+
+use common\models\Region;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+
+
+
+
+
+
 
 class ReportDevController extends RefController
 {
@@ -45,59 +57,193 @@ class ReportDevController extends RefController
         ];
     }
 
-    // public function actionIndex()
-    // {
-    //     // Fetch filter parameters from the GET request
-    //     $startDate = Yii::$app->request->get('start_date');
-    //     $endDate = Yii::$app->request->get('end_date');
-    //     $regionId = Yii::$app->request->get('region_id');
+     public function actionReport()
+    {
+        // Instantiate the search model for the report
+        $searchModel = new ReportSearch();
 
-    //     // Build query for orders with filters
-    //     $query = Order::find()
-    //         ->alias('o')
-    //         ->joinWith('ordersProducts op')
-    //         ->where(['o.is_deleted' => 0]);
+        // Fetch data based on search parameters (filters)
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        // Render the main index.php located directly in backend/views/
+        return $this->render('/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
-    //     if ($startDate && $endDate) {
-    //         $query->andWhere(['between', 'o.date', $startDate, $endDate]);
-    //     }
+ 
 
-    //     if ($regionId) {
-    //         $query->andWhere(['o.region_id' => $regionId]);
-    //     }
+    
 
-    //     // Execute query and fetch results
-    //     $orders = $query->all();
 
-    //     // Prepare data structure for report view
-    //     $reportData = [];
-    //     $totals = array_fill(0, 12, 0); // Initialize totals for 12 products
+    public function actionExportExcel()
+    {
+        // Получаем данные фильтров
+        $searchModel = new ReportSearch();
+        $searchModel->load(\Yii::$app->request->post());
+        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+        $orders = $dataProvider->getModels();
+    
+        // Создаем новый документ Excel
+        $spreadsheet = new Spreadsheet();
+    
+        // Настраиваем лист
+        $sheet = $this->getSheet($spreadsheet, 0, 'Отчёт');
+    
+        // Получаем данные для заголовков
+        $products = Product::find()->select(['id', 'name'])->orderBy('id')->all();
+        $period = $searchModel->period ?: 'Все периоды';
+        $region = $searchModel->region_id ? Region::findOne($searchModel->region_id)->name : 'Все районы';
+    
+        // Вставляем фильтры
+        $sheet->setCellValue('B2', 'Период:');
+        $sheet->setCellValue('C2', $period);
+        $sheet->setCellValue('B3', 'Район:');
+        $sheet->setCellValue('C3', $region);
+    
+        // Настраиваем заголовки
+        $sheet->setCellValue('A5', 'ФИО клиента');
+        $column = 'B';
+    
+        foreach ($products as $product) {
+            $sheet->setCellValue($column . '5', $product->name);
+            $column++;
+        }
+        $sheet->setCellValue($column . '5', 'ИТОГО');
+    
+        // Применяем стили заголовков
+        $sheet->getStyle('A5:' . $column . '5')->applyFromArray($this->_getHeaderStyle());
+    
+        // Заполняем данные
+        $row = 6;
+        $totalByProduct = array_fill(0, count($products), 0);
+        $grandTotal = 0;
+    
+        foreach ($orders as $order) {
+            $sheet->setCellValue("A{$row}", $order->client);
+            $column = 'B';
+            $total = 0;
+    
+            foreach ($products as $index => $product) {
+                $orderProduct = OrderProduct::find()
+                    ->where(['order_id' => $order->id, 'product_id' => $product->id])
+                    ->one();
+    
+                $quantity = $orderProduct ? $orderProduct->q : 0;
+                $sheet->setCellValue("{$column}{$row}", $quantity);
+                $total += $quantity;
+                $totalByProduct[$index] += $quantity;
+                $column++;
+            }
+    
+            $sheet->setCellValue("{$column}{$row}", $total);
+            $grandTotal += $total;
+            $row++;
+        }
+    
+        // Итоговая строка
+        $sheet->setCellValue("A{$row}", 'ИТОГО');
+        $column = 'B';
+    
+        foreach ($totalByProduct as $total) {
+            $sheet->setCellValue("{$column}{$row}", $total);
+            $column++;
+        }
+        $sheet->setCellValue("{$column}{$row}", $grandTotal);
+    
+        // Стилизация итоговой строки
+        $sheet->getStyle("A{$row}:" . $column . "{$row}")->applyFromArray([
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['argb' => 'F8D7DA'],
+            ],
+            'font' => ['bold' => true],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ]);
+    
+        // Авторазмер колонок
+        foreach (range('A', $column) as $col) {
+            $sheet->getColumnDimension($col)->setAutoSize(true);
+        }
+    
+        // Отправляем Excel-файл пользователю
+        $filename = 'Отчёт_' . date('Y-m-d_H-i-s') . '.xlsx';
+        $response = Yii::$app->getResponse();
+        $response->format = \yii\web\Response::FORMAT_RAW;
+        $headers = $response->getHeaders();
+        $headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        $headers->set('Content-Disposition', 'attachment;filename="' . $filename . '"');
+        $headers->set('Cache-Control', 'max-age=0');
+    
+        $writer = new Xlsx($spreadsheet);
+        ob_start();
+        $writer->save('php://output');
+        $content = ob_get_clean();
+        $response->content = $content;
+    
+        return $response;
+    }
+    
+    // Метод getSheet
+    protected function getSheet($spreadsheet, $index = 0, $title = 'Данные')
+    {
+        static $sheets = [];
+    
+        if (!isset($sheets[$index])) {
+            if ($index === 0) {
+                $sheets[$index] = $spreadsheet->getActiveSheet();
+                $sheets[$index]->setTitle($title);
+            } else {
+                $sheets[$index] = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, $title);
+                $spreadsheet->addSheet($sheets[$index], $index + 1);
+            }
+    
+            $sheet = $sheets[$index];
+    
+            // Настройки страницы
+            $sheet->getPageSetup()->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
+            $sheet->getPageSetup()->setPaperSize(PageSetup::PAPERSIZE_A4);
+            $sheet->getPageMargins()->setLeft(0.1)->setRight(0.1)->setTop(0.1)->setBottom(0.1);
+    
+            // Авторазмер колонок
+            foreach (range('A', 'Z') as $col) {
+                $sheet->getColumnDimension($col)->setAutoSize(true);
+            }
+        }
+    
+        return $sheets[$index];
+    }
+    
+    // Метод для получения стиля заголовков
+    protected function _getHeaderStyle()
+    {
+        return [
+            'font' => ['bold' => true],
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_CENTER,
+                'vertical' => Alignment::VERTICAL_CENTER,
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['argb' => 'FFD700'],
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ];
+    }
+    
+    
 
-    //     foreach ($orders as $order) {
-    //         $clientData = [
-    //             'client' => $order->client,
-    //             'products' => array_fill(0, 12, 0) // Initialize products columns with 0s
-    //         ];
-
-    //         foreach ($order->ordersProducts as $product) {
-    //             $productIndex = $product->product_id - 1; // Assuming product_id starts from 1 to 12
-    //             if ($productIndex >= 0 && $productIndex < 12) {
-    //                 $clientData['products'][$productIndex] = $product->q;
-    //                 $totals[$productIndex] += $product->q;
-    //             }
-    //         }
-
-    //         $reportData[] = $clientData;
-    //     }
-
-    //     return $this->render('index', [
-    //         'reportData' => $reportData,
-    //         'totals' => $totals,
-    //         'startDate' => $startDate,
-    //         'endDate' => $endDate,
-    //         'regionId' => $regionId,
-    //     ]);
-    // }
+  
 
     public function actionIndex()
     {

@@ -67,20 +67,20 @@ class SiteController extends RefController
             //    return $this->render('index');
     }
 
-    public function actionReport()
-    {
-        // Instantiate the search model for the report
-        $searchModel = new ReportSearch();
+    // public function actionReport()
+    // {
+    //     // Instantiate the search model for the report
+    //     $searchModel = new ReportSearch();
 
-        // Fetch data based on search parameters (filters)
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    //     // Fetch data based on search parameters (filters)
+    //     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        // Render the main index.php located directly in backend/views/
-        return $this->render('/index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+    //     // Render the main index.php located directly in backend/views/
+    //     return $this->render('/index', [
+    //         'searchModel' => $searchModel,
+    //         'dataProvider' => $dataProvider,
+    //     ]);
+    // }
 
     /**
      * Displays profile page.

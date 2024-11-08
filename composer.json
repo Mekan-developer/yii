@@ -19,7 +19,8 @@
         "yiisoft/yii2-jui": "*",
         "yiisoft/yii2-bootstrap5": "~2.0.2",
         "phpoffice/phpspreadsheet": "*",
-        "nelexa/zip": "^4.0"
+        "nelexa/zip": "^4.0",
+        "kartik-v/yii2-date-range": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0"
